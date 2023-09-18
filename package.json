@@ -70,10 +70,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/gerswgvrevewv/test.git"
+    "url": "https://github.com/auro-orm/auro-engines"
   },
   "bugs": {
-    "url": "https://github.com/gerswgvrevewv/test/issues"
+    "url": "https://github.com/auro-orm/auro-engines/issues"
   },
-  "homepage": "https://github.com/gerswgvrevewv/test#readme"
+  "homepage": "https://github.com/auro-orm/auro-engines#readme"
 }
