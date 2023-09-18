@@ -1,0 +1,27 @@
+[package]
+authors = ["Igor Tomic <itomic410@gmail.com>"]
+edition = "2021"
+name = "auro-engines"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "2", features = ["async"] }
+napi-derive = "2"
+aws-config = "0.54.1"
+aws-sdk-rdsdata = "0.24.0"
+dotenv = "0.15.0"
+thiserror = "1.0.40"
+lazy_static = "1.4.0"
+
+[dependencies.tokio]
+version = "1.20.1"
+features = ["full"]
+
+[build-dependencies]
+napi-build = "2.0.1"
+
+[profile.release]
+lto = true
