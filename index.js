@@ -252,8 +252,14 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { Order, connect, introspect, getForeignKeysData, query, queryRaw } = nativeBinding
+const { Order, connect, introspect, getForeignKeysData, query, queryRaw, Order, connect, introspect, getForeignKeysData, query, queryRaw } = nativeBinding
 
+module.exports.Order = Order
+module.exports.connect = connect
+module.exports.introspect = introspect
+module.exports.getForeignKeysData = getForeignKeysData
+module.exports.query = query
+module.exports.queryRaw = queryRaw
 module.exports.Order = Order
 module.exports.connect = connect
 module.exports.introspect = introspect

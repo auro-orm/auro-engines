@@ -83,6 +83,10 @@ pub fn build_return(return_field: &ParsedField) -> Result<String, BuilderError> 
   }
   .join(", ");
 
+  if arguments.is_empty() {
+    return Ok(String::from("")); // TODO: Maybe throw error here?
+  }
+
   Ok(format!("{}{}", constants::RETURN, arguments))
 }
 

@@ -20,6 +20,7 @@ mod builder;
 mod error;
 mod fields;
 mod utils;
+mod tests;
 
 pub mod aggregations;
 pub mod options;

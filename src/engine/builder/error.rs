@@ -1,6 +1,6 @@
 use thiserror::Error;
 
-#[derive(Debug, Error)]
+#[derive(Debug, Error, PartialEq)]
 pub enum BuilderError {
   #[error("{:?}", _0)]
   InvalidFieldName(&'static str),

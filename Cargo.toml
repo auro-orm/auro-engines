@@ -6,6 +6,8 @@ version = "0.1.0"
 
 [lib]
 crate-type = ["cdylib"]
+name = "auro_engines"
+
 
 [dependencies]
 napi = { version = "2", features = ["async"] }

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ParsedQuery {
   pub table: String,
   pub schema: String,
@@ -79,7 +79,7 @@ pub struct QueryOptions {
   pub group_by: Option<Vec<String>>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum ParsedOperation {
   FindFirst,
   FindMany,
@@ -93,7 +93,7 @@ pub enum ParsedOperation {
   Average,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ParsedStatement {
   pub query: ParsedQuery,
   pub operation: ParsedOperation,

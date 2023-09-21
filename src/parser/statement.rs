@@ -214,7 +214,7 @@ pub struct Statement {
   pub options: Options,
 }
 
-pub(crate) fn create_statement(metadata: Metadata, fields: Vec<Field>, options: Options) -> Result<ParsedStatement, ParserError> {
+pub fn create_statement(metadata: Metadata, fields: Vec<Field>, options: Options) -> Result<ParsedStatement, ParserError> {
   let query = match create_query(metadata.clone(), fields, options) {
     Ok(query) => query,
     Err(err) => return Err(err),

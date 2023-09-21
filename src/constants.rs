@@ -21,7 +21,7 @@ pub mod constants {
   pub const SELECT_ALL: &str = "SELECT *";
   pub const RETURN_ALL: &str = "RETURNING *";
   pub const RETURN: &str = "RETURNING ";
-  pub const GROUP_BY: &str = "GROUP BY ";
+  pub const GROUP_BY: &str = " GROUP BY";
 }
 
 pub mod errors {

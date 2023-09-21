@@ -130,14 +130,15 @@ pub async fn introspect_schema(client: &ExecuteStatement) -> Result<String, Runt
   }
 }
 
-fn get_connection_options() -> ConnectionOptions {
+fn get_connection_options() -> Result<ConnectionOptions, String> {
   dotenv().ok();
-  let resource_arn = std::env::var("RESOURCE_ARN").expect("RESOURCE_ARN must be set.");
-  let secret_arn = std::env::var("SECRET_ARN").expect("SECRET_ARN must be set.");
-  let database = std::env::var("DATABASE").expect("DATABASE must be set.");
-  let region = std::env::var("REGION").expect("REGION must be set.");
 
-  return ConnectionOptions::new(resource_arn, secret_arn, database, region);
+  let resource_arn = std::env::var("RESOURCE_ARN").map_err(|_| "RESOURCE_ARN must be set.")?;
+  let secret_arn = std::env::var("SECRET_ARN").map_err(|_| "SECRET_ARN must be set.")?;
+  let database = std::env::var("DATABASE").map_err(|_| "DATABASE must be set.")?;
+  let region = std::env::var("REGION").map_err(|_| "REGION must be set.")?;
+
+  Ok(ConnectionOptions::new(resource_arn, secret_arn, database, region))
 }
 
 pub async fn execute_statement(query: String, client: &ExecuteStatement) -> Result<ExecuteStatementOutput, RuntimeError> {
@@ -156,7 +157,13 @@ pub async fn execute_statement(query: String, client: &ExecuteStatement) -> Resu
 }
 
 pub async fn initialize_client() -> ExecuteStatement {
-  let options = get_connection_options();
+  let options = match get_connection_options() {
+    Ok(options) => options,
+    Err(err) => {
+      eprintln!("Error initializing client: {}", err);
+      std::process::exit(1);
+    }
+  };
   let region = Region::new(options.region);
 
   let region_provider = RegionProviderChain::first_try(region.clone())
