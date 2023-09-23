@@ -22,6 +22,10 @@ pub(crate) fn build_select(argument: &ParsedArgument) -> Result<String, BuilderE
   Ok(argument.name.to_string())
 }
 
+pub(crate) fn build_aggregate(argument: &ParsedArgument) -> Result<String, BuilderError> {
+  Ok(format!("AVG({})", argument.name.to_string()))
+}
+
 pub(crate) fn parse_value(value: &Option<ParsedValue>) -> String {
   match value {
     Some(ParsedValue::String(s)) | Some(ParsedValue::Date(s)) | Some(ParsedValue::DateTime(s)) => format!("'{}'", s),

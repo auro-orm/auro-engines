@@ -5,7 +5,7 @@ use crate::{
 
 pub fn count(query_schema: &ParsedQuery) -> Result<String, BuilderError> {
   let builder = QueryBuilder::new(&query_schema)
-    .order_fields(vec![FieldName::From, FieldName::Where])
+    .order_fields(vec![FieldName::Aggs, FieldName::From, FieldName::Where])
     .build_ordered()?;
 
   Ok(format!("SELECT COUNT (*) FROM {}", builder))
@@ -13,8 +13,8 @@ pub fn count(query_schema: &ParsedQuery) -> Result<String, BuilderError> {
 
 pub fn average(query_schema: &ParsedQuery) -> Result<String, BuilderError> {
   let builder = QueryBuilder::new(&query_schema)
-    .order_fields(vec![FieldName::From, FieldName::Where])
+    .order_fields(vec![FieldName::Aggs, FieldName::From, FieldName::Where])
     .build_ordered()?;
 
-  Ok(format!("SELECT AVG(id) FROM {}", builder))
+  Ok(format!("SELECT {}", builder))
 }

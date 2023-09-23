@@ -22,6 +22,14 @@ impl<'a> QueryBuilder<'a> {
     self
   }
 
+  fn build_aggregate(&self) -> Result<String, BuilderError> {
+    if let Some(aggregate_field) = self.query.fields.iter().find(|field| field.name == FieldName::Aggs) {
+      fields::build_aggregate(aggregate_field)
+    } else {
+      Ok(String::new())
+    }
+  }
+
   fn build_select(&self) -> Result<String, BuilderError> {
     if let Some(select_field) = self.query.fields.iter().find(|field| field.name == FieldName::Select) {
       fields::build_select(select_field)
@@ -129,6 +137,7 @@ impl<'a> QueryBuilder<'a> {
         FieldName::Set => ordered_fields.push(self.build_set()?),
         FieldName::Data => ordered_fields.push(self.build_data()?),
         FieldName::Return => ordered_fields.push(self.build_return()?),
+        FieldName::Aggs => ordered_fields.push(self.build_aggregate()?),
         _ => return Err(BuilderError::InvalidFieldName(errors::INVALID_FIELD)),
       }
     }

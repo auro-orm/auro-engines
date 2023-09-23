@@ -151,3 +151,18 @@ pub fn build_include(parsed_include: &ParsedInclude, schema: &str) -> Result<Str
 
   Ok(format!("INNER JOIN {} ON {}", join_tables_str, join_condition_str))
 }
+
+pub fn build_aggregate(aggregate_field: &ParsedField) -> Result<String, BuilderError> {
+  let aggregate = aggregate_field
+    .arguments
+    .iter()
+    .map(|arg| arguments::build_aggregate(arg))
+    .collect::<Result<Vec<String>, BuilderError>>()?
+    .join(", ");
+
+  if aggregate.is_empty() {
+    return Err(BuilderError::InvalidStatement(errors::INVALID_STATEMENT));
+  }
+
+  Ok(format!("{} FROM", aggregate))
+}
