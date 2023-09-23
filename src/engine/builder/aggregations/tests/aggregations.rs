@@ -35,7 +35,7 @@ mod tests {
     let generated_sql = result.unwrap();
     assert_eq!(
       generated_sql,
-      "SELECT COUNT (*) FROM my_schema.my_table WHERE arg1 = 'value1' "
+      "SELECT COUNT (*) FROM  my_schema.my_table WHERE arg1 = 'value1' "
     );
   }
 
@@ -61,10 +61,7 @@ mod tests {
     assert!(result.is_ok());
 
     let generated_sql = result.unwrap();
-    assert_eq!(
-      generated_sql,
-      "SELECT COUNT (*) FROM my_schema.my_table  "
-    );
+    assert_eq!(generated_sql, "SELECT COUNT (*) FROM  my_schema.my_table  ");
   }
 
   #[test]
@@ -82,20 +79,29 @@ mod tests {
       table: "my_table".to_string(),
       schema: "my_schema".to_string(),
       options: options,
-      fields: vec![ParsedField {
-        name: FieldName::Where,
-        arguments: vec![ParsedArgument {
-          name: "arg1".to_string(),
-          value: Some(ParsedValue::String("value1".to_string())),
-        }],
-      }],
+      fields: vec![
+        ParsedField {
+          name: FieldName::Where,
+          arguments: vec![ParsedArgument {
+            name: "arg1".to_string(),
+            value: Some(ParsedValue::String("value1".to_string())),
+          }],
+        },
+        ParsedField {
+          name: FieldName::Aggs,
+          arguments: vec![ParsedArgument {
+            name: "arg1".to_string(),
+            value: Some(ParsedValue::String("value1".to_string())),
+          }],
+        },
+      ],
     };
 
     let result = average(&parsed_query);
     assert!(result.is_ok());
 
     let generated_sql = result.unwrap();
-    assert_eq!(generated_sql, "SELECT AVG(id) FROM my_schema.my_table WHERE arg1 = 'value1' ");
+    assert_eq!(generated_sql, "SELECT AVG(arg1) FROM my_schema.my_table WHERE arg1 = 'value1' ");
   }
 
   #[test]
@@ -113,13 +119,19 @@ mod tests {
       table: "my_table".to_string(),
       schema: "my_schema".to_string(),
       options: options,
-      fields: vec![],
+      fields: vec![ParsedField {
+        name: FieldName::Aggs,
+        arguments: vec![ParsedArgument {
+          name: "arg1".to_string(),
+          value: Some(ParsedValue::String("value1".to_string())),
+        }],
+      }],
     };
 
     let result = average(&parsed_query);
     assert!(result.is_ok());
 
     let generated_sql = result.unwrap();
-    assert_eq!(generated_sql, "SELECT AVG(id) FROM my_schema.my_table  ");
+    assert_eq!(generated_sql, "SELECT AVG(arg1) FROM my_schema.my_table  ");
   }
 }
