@@ -1,0 +1,52 @@
+name: Pull Request Tests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install Dependencies
+        run: cargo build --verbose
+
+      - name: Run Tests
+        run: cargo test
+
+  merge-blocker:
+    name: Merge Blocker
+    runs-on: ubuntu-latest
+    needs: test
+    if: ${{ github.event_name == 'pull_request' && always() && contains(needs.*.result, 'failure') }}
+
+    steps:
+      - name: Check Test Status
+        id: check_tests
+        run: echo "::set-output name=test_status::${{ job.status }}"
+        
+      - name: Comment on Pull Request
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = `Tests have failed. Please fix the issues in order to merge this pull request.`;
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
