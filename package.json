@@ -76,9 +76,4 @@
     "url": "https://github.com/auro-orm/auro-engines/issues"
   },
   "homepage": "https://github.com/auro-orm/auro-engines#readme",
-  "optionalDependencies": {
-    "@auro/engine-win32-x64-msvc": "0.1.0",
-    "@auro/engine-darwin-x64": "0.1.0",
-    "@auro/engine-linux-x64-gnu": "0.1.0"
-  }
 }
