@@ -1,19 +1,29 @@
 {
-  "name": "@auro/engine-linux-x64-gnu",
-  "version": "0.0.0",
+  "name": "@auro-orm/engine-linux-x64-gnu",
+  "version": "0.1.4",
   "os": [
     "linux"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "engine.linux-x64-gnu.node",
+  "main": "auro-engine.linux-x64-gnu.node",
   "files": [
-    "engine.linux-x64-gnu.node"
+    "auro-engine.linux-x64-gnu.node"
   ],
+  "description": "Engine for Auro ORM written in Rust.",
+  "author": "Igor Tomic",
+  "homepage": "https://github.com/auro-orm/auro-engines#readme",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/auro-orm/auro-engines"
+  },
+  "bugs": {
+    "url": "https://github.com/auro-orm/auro-engines/issues"
   },
   "libc": [
     "glibc"
