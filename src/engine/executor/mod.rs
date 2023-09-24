@@ -31,7 +31,7 @@ impl ConnectionOptions {
 
 pub async fn get_foreign_keys(client: &ExecuteStatement, table: &str) -> Result<String, RuntimeError> {
   dotenv().ok();
-  let schema = std::env::var("REGION").expect("Schema must be set.");
+  let schema = std::env::var("SCHEMA").expect("Schema must be set.");
 
   let introspection_query = format!(
     "SELECT
@@ -74,7 +74,7 @@ WHERE tc.constraint_type = 'FOREIGN KEY'
 
 pub async fn introspect_schema(client: &ExecuteStatement) -> Result<String, RuntimeError> {
   dotenv().ok();
-  let schema = std::env::var("REGION").expect("Schema must be set.");
+  let schema = std::env::var("SCHEMA").expect("Schema must be set.");
 
   let introspection_query = format!(
     "SELECT tabl.table_name, columns.column_name, columns.data_type, columns.is_nullable,
