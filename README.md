@@ -42,4 +42,4 @@ If you have any questions or need assistance, feel free to contact the project m
 
 ## 🙌 Acknowledgments
 
-Special thanks to [aws_sdk_rdsdata](https://docs.rs/aws-sdk-rdsdata/latest/aws_sdk_rdsdata/) for their invaluable contributions and support. We also extend our gratitude to the Rust, JavaScript, TypeScript, and PostgreSQL communities for their continuous contributions and support.
+Special thanks to [aws_sdk_rdsdata](https://docs.rs/aws-sdk-rdsdata/latest/aws_sdk_rdsdata/) for the library they made because without it, it would be a lot harder to make this one. We also extend our gratitude to the Rust, JavaScript, TypeScript, and PostgreSQL communities for their continuous contributions and support.
