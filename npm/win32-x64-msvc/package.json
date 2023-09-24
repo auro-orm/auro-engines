@@ -1,18 +1,28 @@
 {
   "name": "@auro-orm/engine-win32-x64-msvc",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "os": [
     "win32"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "engine.win32-x64-msvc.node",
+  "main": "auro-engine.win32-x64-msvc.node",
   "files": [
-    "engine.win32-x64-msvc.node"
+    "auro-engine.win32-x64-msvc.node"
   ],
+  "description": "Engine for Auro ORM written in Rust.",
+  "author": "Igor Tomic",
+  "homepage": "https://github.com/auro-orm/auro-engines#readme",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/auro-orm/auro-engines"
+  },
+  "bugs": {
+    "url": "https://github.com/auro-orm/auro-engines/issues"
   }
 }
