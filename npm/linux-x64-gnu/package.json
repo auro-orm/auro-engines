@@ -1,6 +1,6 @@
 {
-  "name": "@auro/engine-linux-x64-gnu",
-  "version": "0.1.0",
+  "name": "@auro-orm/engine-linux-x64-gnu",
+  "version": "0.1.1",
   "os": [
     "linux"
   ],

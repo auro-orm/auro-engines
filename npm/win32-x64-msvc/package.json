@@ -1,6 +1,6 @@
 {
-  "name": "@auro/engine-win32-x64-msvc",
-  "version": "0.1.0",
+  "name": "@auro-orm/engine-win32-x64-msvc",
+  "version": "0.1.1",
   "os": [
     "win32"
   ],

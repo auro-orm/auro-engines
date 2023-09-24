@@ -1,8 +1,8 @@
 {
   "name": "@auro-orm/engine",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Igor Tomic",
-  "description": "Engines for Auro ORM written in Rust.",
+  "description": "Engine for Auro ORM written in Rust.",
   "os": [
     "linux",
     "win32",
@@ -14,7 +14,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
-    "name": "engine",
+    "name": "auro-engine",
     "triples": {}
   },
   "license": "MIT",
@@ -75,5 +75,10 @@
   "bugs": {
     "url": "https://github.com/auro-orm/auro-engines/issues"
   },
-  "homepage": "https://github.com/auro-orm/auro-engines#readme"
+  "homepage": "https://github.com/auro-orm/auro-engines#readme",
+  "optionalDependencies": {
+    "@auro-orm/engine-win32-x64-msvc": "0.1.1",
+    "@auro-orm/engine-darwin-x64": "0.1.1",
+    "@auro-orm/engine-linux-x64-gnu": "0.1.1"
+  }
 }
