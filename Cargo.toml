@@ -1,12 +1,11 @@
 [package]
 authors = ["Igor Tomic <itomic410@gmail.com>"]
 edition = "2021"
-name = "auro-engines"
+name = "auro-engine"
 version = "0.1.0"
 
 [lib]
 crate-type = ["cdylib"]
-name = "auro_engines"
 
 
 [dependencies]

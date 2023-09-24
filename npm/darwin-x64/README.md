@@ -1,3 +1,3 @@
-# `@auro/engine-darwin-x64`
+# `@auro-orm/engine-darwin-x64`
 
-This is the **x86_64-apple-darwin** binary for `@auro/engine`
+This is the **x86_64-apple-darwin** binary for `@auro-orm/engine`
