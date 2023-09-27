@@ -59,7 +59,7 @@ impl Field {
   }
 
   fn parse_field_name(&self) -> Result<FieldName, ParserError> {
-    FieldName::from_str(&self.name).map_err(|err| err)
+    FieldName::from_str(&self.name).map_err(|_| ParserError::InvalidFieldName(format!("Invalid field name: {}", self.name)))
   }
 
   fn parse_arguments(&self) -> Result<Vec<ParsedArgument>, ParserError> {
@@ -84,7 +84,7 @@ impl FromStr for FieldName {
       "return" => Ok(FieldName::Return),
       "no_return" => Ok(FieldName::NoReturn),
       "aggs" => Ok(FieldName::Aggs),
-      _ => Err(ParserError::InputError("Invalid field name!".to_string())),
+      _ => Err(ParserError::InvalidFieldName(format!("Invalid field name: {}", s))),
     }
   }
 }
@@ -128,7 +128,7 @@ impl Argument {
       "datetime" => return Ok(Some(ParsedValue::DateTime(value))),
       "custom" => return Ok(Some(ParsedValue::Custom(value))),
       "null" => return Ok(Some(ParsedValue::Null)),
-      _ => Err(ParserError::ParseError("Invalid value type!".to_string())),
+      _ => Err(ParserError::InvalidValueType(format!("Invalid value type: {}", value_type))),
     }
   }
 }

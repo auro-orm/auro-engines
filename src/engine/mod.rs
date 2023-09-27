@@ -13,7 +13,7 @@ pub(crate) async fn execute(statement: &parsed::ParsedStatement, client: &Execut
     Ok(query_string) => query_string,
     Err(err) => return Err(RuntimeError::Error(err.to_string())),
   };
-
+  print!("query_string: {}", query_string);
   let result = match execute_statement(query_string, client).await {
     Ok(result) => result,
     Err(err) => return Err(RuntimeError::Error(err.to_string())),

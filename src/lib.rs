@@ -52,7 +52,7 @@ pub async fn query(fields: Vec<Field>, options: Options, metadata: Metadata) -> 
 
   let statement = match create_statement(metadata, fields, options) {
     Ok(statement) => statement,
-    Err(err) => return Err(napi::Error::from_reason(err.to_string())),
+    Err(err) => return Err(napi::Error::from(err)),
   };
 
   let formatted_records = match execute(&statement, client).await {

@@ -1,22 +1,34 @@
 use thiserror::Error;
 
-#[derive(Debug, PartialEq, Error)]
+#[derive(Debug, Error, PartialEq)]
 pub enum ParserError {
-  #[error("{:?}", _0)]
+  #[error("Schema error: {0}")]
   SchemaError(String),
 
-  #[error("{:?}", _0)]
+  #[error("Parse error: {0}")]
   ParseError(String),
 
-  #[error("{:?}", _0)]
+  #[error("Input error: {0}")]
   InputError(String),
 
-  #[error("{:?}", _0)]
+  #[error("Not found error: {0}")]
   NotFoundError(String),
 
-  #[error("{:?}", _0)]
+  #[error("General error: {0}")]
   Error(String),
 
-  #[error("{:?}", _0)]
+  #[error("No arguments error: {0}")]
   NoArguments(String),
+
+  #[error("Invalid field name: {0}")]
+  InvalidFieldName(String),
+
+  #[error("Invalid value type: {0}")]
+  InvalidValueType(String),
+
+  #[error("Invalid order: {0}")]
+  InvalidOrder(String),
+
+  #[error("Invalid operation: {0}")]
+  InvalidOperation(String),
 }
